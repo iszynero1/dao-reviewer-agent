@@ -1,0 +1,23 @@
+
+{
+  "proposals": [
+    {
+      "id": "prop-001",
+      "title": "Community Garden",
+      "description": "Create a public garden space",
+      "proposer": "alice.near",
+      "budget": 5000,
+      "duration": "6 months",
+      "category": "community"
+    },
+    {
+      "id": "prop-002",
+      "title": "Blockchain Casino",
+      "description": "Build gambling platform",
+      "proposer": "unknown.near",
+      "budget": 15000,
+      "duration": "3 months",
+      "category": "gambling"
+    }
+  ]
+}
