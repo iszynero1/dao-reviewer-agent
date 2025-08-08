@@ -1,0 +1,7 @@
+fastapi==0.68.0
+uvicorn==0.15.0
+python-dotenv==1.0.0
+pydantic==1.8.2
+shade-agent-api>=0.1.0
+shade-agent-cli>=0.1.0
+near-sdk-py>=1.0.0
