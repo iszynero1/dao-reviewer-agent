@@ -1,41 +1,44 @@
-
 # DAO Shade Agent
 
-An autonomous agent that evaluates DAO governance proposals using FastAPI.
+An autonomous agent that evaluates DAO governance proposals using FastAPI and Shade Protocol, with on-chain decision recording.
 
 ## Features
-- Checks proposer whitelist status
-- Validates proposal budgets against limits
-- Returns approve/reject decisions with reasoning
-- RESTful API with FastAPI
+- ✅ **Proposal Evaluation**:
+  - Checks proposer whitelist status
+  - Validates proposal budgets against limits
+  - Scores proposals using configurable rules
+- ⛓ **Blockchain Integration**:
+  - Records decisions on NEAR blockchain
+  - Uses Shade Agents for autonomous operation
+  - Verifiable TEE execution
+- 🚀 **API Endpoints**:
+  - RESTful interface for proposal submission
+  - Health monitoring endpoints
 
-## How it Works
-The agent evaluates proposals based on:
-- **Whitelist Status**: Proposer must be in approved list
-- **Budget Validation**: Budget must not exceed the limit (10,000)
-- **Scoring System**: Starts with 8 points, deducts for violations
-- **Decision Threshold**: Approves if score >= 6
+## How It Works
+1. Receives proposals via API or blockchain events
+2. Evaluates based on:
+   - **Whitelist Status** (Configurable in `config.py`)
+   - **Budget Validation** (Default limit: 10,000)
+   - **Scoring System** (Starts at 8, deducts for violations)
+3. Submits decisions to NEAR blockchain via Shade Agent
+4. Returns verdict with on-chain transaction hash
 
-## API Endpoints
-- `GET /` - Health check
-- `POST /evaluate/` - Evaluate a proposal
+## Prerequisites
+- Python 3.12+
+- Docker Desktop
+- NEAR CLI (`npm install -g near-cli`)
+- Shade Agent CLI ([Install Instructions](#shade-agent-setup))
 
-## Sample Request
-```json
-{
-  "proposer": "alice.near",
-  "budget": 5000,
-  "description": "Community garden project"
-}
-```
+## Quick Start
+```bash
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/dao-shade-agent.git
+cd dao-shade-agent
 
-## Setup
-1. Install dependencies: The system will auto-install from requirements.txt
-2. Run the application: Click the Run button
-3. Test at: Your repl URL + `/docs` for interactive API docs
+# Install dependencies
+pip install -r requirements.txt
 
-## Configuration
-Edit `config.py` to modify:
-- Whitelist of approved proposers
-- Budget limits
-- Scoring thresholds
+# Build and run (requires Docker)
+docker build -t dao-agent .
+docker run -p 5000:5000 dao-agent
